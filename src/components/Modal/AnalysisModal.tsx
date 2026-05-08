@@ -15,7 +15,7 @@ export default function AnalysisModal({ onClose, onConnect }: AnalysisModalProps
           {/* Header --------------------------------------------------------------------------*/}
           <div className="flex flex-col gap-3">
             <h2 className="text-2xl font-semibold tracking-tight text-gray-900">
-              Connect Your Strava Account
+              Connect Your Activity Account
             </h2>
 
             <p className="text-sm leading-relaxed text-gray-600">
@@ -58,7 +58,7 @@ export default function AnalysisModal({ onClose, onConnect }: AnalysisModalProps
               onClick={onConnect}
               className="rounded-md bg-[#FC4C02] py-3 font-medium text-white transition hover:opacity-90"
             >
-              Connect with Strava
+              Connect Account
             </button>
 
             <button

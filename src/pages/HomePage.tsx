@@ -16,6 +16,8 @@ type FeatureCard = {
   content: string;
 };
 
+// Define feature cards data
+//this data is used to populate the feature section on the homepage. Each card highlights a key aspect of the FuelWise platform, such as training load analysis, recovery monitoring, injury risk awareness, and connected activity insights. The content is crafted to communicate the value proposition of each feature in a clear and concise way, helping visitors understand how FuelWise can enhance their training experience.
 const featureCards: FeatureCard[] = [
   {
     id: "training-load-analysis",
@@ -36,13 +38,15 @@ const featureCards: FeatureCard[] = [
       "Detect training imbalance early with smarter workload and recovery signals.",
   },
   {
-    id: "strava-powered-insights",
-    title: "Strava-Powered Insights",
+    id: "connected-activity-insights",
+    title: "Connected Activity Insights",
     content:
       "Sync activity data seamlessly to generate personalized performance analytics.",
   },
 ];
 
+// this function is responsible for rendering the introductory section of each major content area on the homepage. It takes in an eyebrow (a small uppercase label), a heading (the main title), and a description (a brief paragraph) as props, and styles them to create a visually appealing and informative introduction for visitors. This component helps set the context for the content that follows, guiding users through the key features and benefits of the FuelWise platform.
+// The SectionIntro component is a reusable UI component that renders a section header with an eyebrow, heading, and description. It is used to introduce different sections of the homepage, providing context and highlighting key messages about the features and benefits of the FuelWise platform.
 function SectionIntro({ eyebrow, heading, description }: SectionIntroProps) {
   return (
     <header className="text-center lg:text-left">
@@ -113,7 +117,7 @@ export default function HomePage() {
               <SectionIntro
                 eyebrow="Performance Insights"
                 heading="Understand your training patterns before fatigue becomes injury."
-                description="FuelWise combines Strava activity syncing with workload and recovery analysis so endurance athletes can make clearer, data-informed training decisions."
+                description="FuelWise combines connected activity syncing with workload and recovery analysis so endurance athletes can make clearer, data-informed training decisions."
               />
 
               <ul className="mt-8 flex flex-col gap-3 text-sm text-stone-700 items-center md:items-start">

@@ -19,45 +19,84 @@ function ExchangeTokenPage() {
 
     const params = new URLSearchParams(window.location.search);
     const code = params.get("code");
+    const state = params.get("state");
 
-    // TODO: Backend should enforce OAuth state validation for CSRF protection.
     if (!code) {
       navigate("/", { replace: true });
       return;
     }
 
-    // Prevent duplicate exchange calls in StrictMode development re-renders.
     if (hasExchangedRef.current) {
       return;
     }
     hasExchangedRef.current = true;
 
+    const baseUrl = import.meta.env.VITE_API_BASE_URL;
+    const callbackPath =
+      import.meta.env.VITE_AUTH_CALLBACK_PATH || "/api/auth/callback";
+    const legacyCallbackPath = "/api/strava/callback";
+
+    const query = new URLSearchParams({ code });
+    if (state) {
+      query.set("state", state);
+    }
+
+    const exchange = async (path: string) => {
+      const response = await fetch(`${baseUrl}${path}?${query.toString()}`);
+
+      if (!response.ok) {
+        throw new Error(`Token exchange failed with status ${response.status}`);
+      }
+
+      return response.json();
+    };
+
     let isActive = true;
 
     const exchangeToken = async () => {
       try {
-        const response = await fetch(
-          `${import.meta.env.VITE_API_BASE_URL}/api/strava/callback?code=${code}`,
-        );
-
-        const data = await response.json();
+        const data = await exchange(callbackPath);
 
         if (!isActive) {
           return;
         }
 
-        if (data.access_token && data.athlete) {
-          completeLogin(data.access_token, data.athlete);
+        const token = data.access_token ?? data.token;
+        const athlete = data.athlete ?? data.user ?? data.profile;
+
+        if (token && athlete) {
+          completeLogin(token, athlete);
           navigate("/dashboard", { replace: true });
           return;
         }
 
         navigate("/", { replace: true });
       } catch (error) {
-        console.error("Token exchange failed:", error);
+        try {
+          const fallbackData = await exchange(legacyCallbackPath);
 
-        if (isActive) {
+          if (!isActive) {
+            return;
+          }
+
+          const token = fallbackData.access_token ?? fallbackData.token;
+          const athlete =
+            fallbackData.athlete ?? fallbackData.user ?? fallbackData.profile;
+
+          if (token && athlete) {
+            completeLogin(token, athlete);
+            navigate("/dashboard", { replace: true });
+            return;
+          }
+
           navigate("/", { replace: true });
+        } catch (fallbackError) {
+          console.error("Token exchange failed:", error);
+          console.error("Legacy callback fallback also failed:", fallbackError);
+
+          if (isActive) {
+            navigate("/", { replace: true });
+          }
         }
       }
     };
@@ -71,7 +110,7 @@ function ExchangeTokenPage() {
 
   return (
     <div>
-      <p>Connecting to Strava...</p>
+      <p>Connecting your account...</p>
     </div>
   );
 }

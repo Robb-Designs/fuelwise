@@ -1,8 +1,5 @@
 // Import types from types folder
-import { Activity, WeeklySummary, RiskLevel, FuelWiseResult} from "../types/strava";
-
-
-console.log("Am I here?")
+import { Activity, WeeklySummary, RiskLevel, FuelWiseResult } from "../types/strava";
 
 // Helper function to determine intensity score based on pace 
 // Faster pace = higher intensity
