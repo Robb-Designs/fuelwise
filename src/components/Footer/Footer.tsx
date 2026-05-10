@@ -14,16 +14,12 @@ const legalNav = [
   { label: "Terms of Service", to: "/terms" },
 ];
 
-
-
 export default function Footer() {
   return (
     <footer className="border-t border-white/10 bg-[#313527]/85 backdrop-blur-md text-center text-sm text-stone-300 py-6 mt-14">
       <div className="mx-auto max-w-7xl px-6">
-
         {/* Top area */}
         <div className="flex flex-col gap-10 sm:flex-row sm:items-start sm:justify-between">
-
           {/* Brand */}
           <div className="max-w-xs">
             <Link
@@ -76,9 +72,7 @@ export default function Footer() {
             ))}
           </ul>
         </div>
-
       </div>
     </footer>
   );
 }
-

@@ -77,7 +77,7 @@ export default function HomePage() {
         <Navbar />
         <div className="absolute inset-0 z-0">
           <img
-            src="/images/newHero.webp"
+            src="/newHero.webp"
             alt="Runner training outdoors"
             className="h-full w-full object-cover"
           />
@@ -140,7 +140,7 @@ export default function HomePage() {
 
             <figure className="lg:col-span-7 rounded-2xl border border-stone-200/70 bg-[#FCFBF8] p-3 shadow-[0_10px_30px_-18px_rgba(28,25,23,0.12)]">
               <img
-                src="/images/RealisticDataDashBoard.webp"
+                src="/RealisticDataDashBoard.webp"
                 alt="FuelWise dashboard preview"
                 className="h-full w-full rounded-xl object-cover"
               />
