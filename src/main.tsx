@@ -7,7 +7,8 @@ import { AuthProvider } from "./context/AuthContext";
 
 createRoot(document.getElementById("root") as HTMLElement).render(
 	<React.StrictMode>
-		<BrowserRouter>
+		{/* Match router base to Vite base so nested routes work under /fuelwise/. */}
+		<BrowserRouter basename={import.meta.env.BASE_URL}>
 			<AuthProvider>
 				<App />
 			</AuthProvider>
