@@ -66,6 +66,7 @@ function SectionIntro({ eyebrow, heading, description }: SectionIntroProps) {
 export default function HomePage() {
   const { login } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const assetBase = import.meta.env.BASE_URL;
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -77,7 +78,7 @@ export default function HomePage() {
         <Navbar />
         <div className="absolute inset-0 z-0">
           <img
-            src="/newHero.webp"
+            src={`${assetBase}newHero.webp`}
             alt="Runner training outdoors"
             className="h-full w-full object-cover"
           />
@@ -140,7 +141,7 @@ export default function HomePage() {
 
             <figure className="lg:col-span-7 rounded-2xl border border-stone-200/70 bg-[#FCFBF8] p-3 shadow-[0_10px_30px_-18px_rgba(28,25,23,0.12)]">
               <img
-                src="/RealisticDataDashBoard.webp"
+                src={`${assetBase}RealisticDataDashBoard.webp`}
                 alt="FuelWise dashboard preview"
                 className="h-full w-full rounded-xl object-cover"
               />
@@ -183,7 +184,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
             <figure className="lg:col-span-7 rounded-2xl border border-stone-200/70 bg-[#FCFBF8] p-3 shadow-[0_10px_30px_-18px_rgba(28,25,23,0.12)]">
               <img
-                src="/images/StretcedGoalsDataDashBoard.webp"
+                src={`${assetBase}/StretcedGoalsDataDashBoard.webp`}
                 alt="FuelWise recovery intelligence dashboard preview"
                 className="h-full w-full rounded-xl object-cover"
               />

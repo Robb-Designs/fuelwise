@@ -14,6 +14,7 @@ Frontend application for athlete activity analysis and weekly training recommend
 - [Environment Configuration](#environment-configuration)
 - [Run Locally](#run-locally)
 - [Build and Preview](#build-and-preview)
+- [Deployment](#deployment)
 - [Project Structure](#project-structure)
 
 ## Overview
@@ -172,6 +173,18 @@ Preview the built app:
 
 ```bash
 npm run preview
+```
+
+## Deployment
+
+The app is published on GitHub Pages at:
+
+https://robb-designs.github.io/fuelwise/
+
+To redeploy the current build to the `gh-pages` branch, run:
+
+```bash
+npm run deploy
 ```
 
 ## Project Structure
